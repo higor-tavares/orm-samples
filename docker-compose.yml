@@ -1,0 +1,10 @@
+version: '3'
+services:
+  database:
+    image: 'postgres:13.8-alpine3.16'
+    ports:
+      - 5555:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: orm-samples
