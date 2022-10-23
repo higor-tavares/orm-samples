@@ -9,10 +9,14 @@ import org.springframework.stereotype.Service
 class CourseUseCase(private val coursePersistenceAdapter: CoursePersistenceAdapter){
 
     fun save(course: SaveCourseRequest) : Course{
-        val requirements = course.requirements?.map { coursePersistenceAdapter.findById(it) }
+        var requirements: List<Course> = emptyList()
+        course.requirements?.let {
+            requirements = coursePersistenceAdapter.findCoursesIn(course.requirements)
+        }
         val courseEntity = course.toModel(requirements);
         return coursePersistenceAdapter.save(courseEntity)
     }
+
     fun findAll() : List<Course> {
         return coursePersistenceAdapter.findAll();
     }

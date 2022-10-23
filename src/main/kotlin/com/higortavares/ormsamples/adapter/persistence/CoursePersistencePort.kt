@@ -6,4 +6,5 @@ interface CoursePersistencePort {
     fun save(course: Course) : Course
     fun findAll() : List<Course>
     fun findById(id: Long) : Course?
+    fun findCoursesIn(requirements: List<Long>) : List<Course>
 }

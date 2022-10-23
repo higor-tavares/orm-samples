@@ -16,4 +16,8 @@ class CoursePersistenceAdapter(private val courseRepository: CourseRepository): 
     override fun findById(id: Long) : Course {
         return courseRepository.findById(id).get()
     }
+
+    override fun findCoursesIn(requirements: List<Long>): List<Course> {
+       return courseRepository.findCoursesIn(requirements)
+    }
 }
