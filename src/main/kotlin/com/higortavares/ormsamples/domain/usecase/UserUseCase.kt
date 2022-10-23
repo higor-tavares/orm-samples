@@ -9,4 +9,7 @@ class UserUseCase(private val persistencePort: PersistencePort) {
     fun save(user: User) : User {
         return persistencePort.save(user)
     }
+    fun getFirst() : List<User> {
+        return persistencePort.getFirst()
+    }
 }

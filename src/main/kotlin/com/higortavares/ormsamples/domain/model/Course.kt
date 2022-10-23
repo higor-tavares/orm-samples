@@ -12,7 +12,7 @@ data class Course (
     val id: Long?,
     val name: String,
     val duration: Int,
-    @ManyToMany(cascade = [CascadeType.ALL])
+    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     @JoinTable(name="course_requirements",
         joinColumns = [JoinColumn(name="course_id")],
         inverseJoinColumns = [JoinColumn(name="requirement")]

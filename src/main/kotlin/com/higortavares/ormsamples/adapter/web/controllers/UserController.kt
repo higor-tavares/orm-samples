@@ -6,6 +6,7 @@ import com.higortavares.ormsamples.domain.model.User
 import com.higortavares.ormsamples.domain.usecase.UserUseCase
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -19,5 +20,10 @@ class UserController(private val userUseCase: UserUseCase) {
     fun save(@RequestBody user: SaveUserRequest) : ResponseEntity<SaveUserResponse>{
         val createdUser = userUseCase.save(user.toModel())
         return ResponseEntity.status(HttpStatus.CREATED).body(SaveUserResponse(createdUser))
+    }
+
+    @GetMapping("/first")
+    fun getFirst() : ResponseEntity<List<SaveUserResponse>> {
+        return ResponseEntity.ok(userUseCase.getFirst().map {SaveUserResponse(it)})
     }
 }
